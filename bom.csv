@@ -1,0 +1,7 @@
+qty,unit,item,category,part_number,source,unit_price_usd,cost_usd,notes
+1,ea,Arduino UNO Q,main board,ABX00162,Arduino Store,42.00,42.00,MPU QRB2210 + STM32U585; includes 8x13 blue LED matrix + 4 RGB LEDs + USB-C on board
+1,ea,USB-C power bank (5000 mAh),power supply,generic,any electronics retailer,10.00,10.00,Powers the board standalone through the front USB-C port
+1,ea,USB-C cable (short / right-angle),power supply,generic,any electronics retailer,2.00,2.00,Feeds the board from the power bank; right-angle keeps footprint tidy
+1,set,PLA/PETG filament (enclosure),enclosure,FDM filament 1.75 mm,any supplier,0.80,0.80,~40 g printed; hand-printed enclosure optional
+0,ea,Extra electronics,fasteners,none,none,0.00,0.00,No shields/sensors required; press-fit lid bosses and a recessed USB-C plug channel; no screws
+0,ea,Tools,build,none,none,0.00,0.00,Any 3D printer; hand-build alternative documented in README
