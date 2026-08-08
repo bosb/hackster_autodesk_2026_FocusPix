@@ -1,12 +1,14 @@
 # Bill of Materials (BOM)
 
 FocusPix uses **no extra electronics** — every sensing and display element already lives on
-the Arduino UNO Q. You add only power (a standard USB power bank + cable) and the 3D-printed
-enclosure.
+the Arduino UNO Q. You add only power (a standard USB power bank + cable) and the enclosure,
+which is printed via **PCBWay**. Design is done in **Autodesk Fusion** (`.f3d` included).
 
 | Qty | Item | Category | Part / Source | Est. cost |
 |-----|------|----------|---------------|-----------|
 | 1 | Arduino UNO Q (ABX00162) | Main board | Arduino Store | US $42.00 |
+| 1 | Autodesk Fusion | Design software | Autodesk (education / 30-day trial) | US $0.00 |
+| 1 | PCBWay 3D Printing (enclosure) | Fabrication | PCBWay (US $300 build budget) | US $0.00 |
 | 1 | USB-C power bank (5000 mAh) | Power | Any retailer | US $10.00 |
 | 1 | USB-C cable (short / right-angle) | Power | Any retailer | US $2.00 |
 | 1 | PLA/PETG filament (≈40 g) | Enclosure | Any 1.75 mm filament | ≈ US $0.80 |
@@ -14,7 +16,8 @@ enclosure.
 | 0 | Fasteners | — | none (press-fit lid bosses) | — |
 
 **Total: ≈ US $54.80**, dominated by the UNO Q itself. The power bank keeps the beacon
-running standalone in its case for a full work day.
+running standalone in its case for a full work day. The US $300 PCBWay budget covers the
+printed enclosure, the stand/clip and lanyard loop, and an optional custom PCB mount bracket.
 
 ### What the UNO Q already provides (no add-ons)
 - **8 × 13 blue LED matrix** (monochrome blue, 104 pixels) — the focus countdown + weather

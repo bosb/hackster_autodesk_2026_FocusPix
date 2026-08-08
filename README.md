@@ -1,9 +1,10 @@
-# FocusPix — a Pomodoro focus beacon on the Arduino UNO Q
+# FocusPix — a portable Pomodoro focus beacon on the Arduino UNO Q
 
 ![FocusPix header](docs/header.png)
 
-FocusPix turns a **stock Arduino UNO Q** into a desktop focus beacon with **no extra
-electronics — just the board, a USB-C power bank, and a printed case**. The on-board 8×13
+FocusPix turns a **stock Arduino UNO Q** into a portable focus beacon you can **carry, clip,
+or place anywhere** — with **no extra electronics — just the board, a USB-C power bank, and a
+printed case** (≈ 73 × 57 × 25 mm, press-fit, pocket/carry-on friendly). The on-board 8×13
 blue LED matrix counts down your Pomodoro session, the four RGB LEDs give you a glanceable
 status light (green = focus, blue = break, red flash = done), and the built-in Wi-Fi shows
 **live local weather** as an icon + temperature.
@@ -52,7 +53,7 @@ cable). A right-angle cable keeps the footprint tidy.
 
 **5. Try it without hardware**
 ```
-.venv/bin/python tests/test_app.py     # 6 offline checks
+.venv/bin/python tests/test_app.py     # 7 offline checks
 .venv/bin/python app/main.py            # same logic, ASCII renders on console
 ```
 The app detects the absence of the `arduino.app_utils` module and falls back to console
@@ -98,8 +99,10 @@ base via two bosses; the front USB-C notch passes a power-bank cable to the port
 geometry verification (hole probes, board-vs-case collision = 0 mm³) is logged in
 `decisions.md`.
 
-**Fusion 360:** run `enclosure/fusion/make_enclosure.py` in Fusion's Python console to import
-the three STEP files and save an editable `FocusPix_enclosure.f3d`.
+**Fusion 360:** editable designs are already included — `enclosure/out/focuspix_base.f3d` and
+`enclosure/out/focuspix_lid.f3d`. To regenerate them, run
+`enclosure/fusion/make_enclosure.py` in Fusion's Python console to re-import the three STEP
+files and save the `.f3d`. The enclosure can be printed at any shop, including **PCBWay**.
 
 ## Repository map
 
@@ -107,13 +110,13 @@ the three STEP files and save an editable `FocusPix_enclosure.f3d`.
 docs/header.svg|.png     project header graphic (scalable SVG + PNG render)
 firmware/focuspix.ino      STM32 RPC server + self-test
 app/main.py, fonts.py      MPU Python app (Pomodoro + weather + renderer), config.json
-tests/test_app.py          6 offline tests (all green)
+tests/test_app.py          7 offline tests (all green)
 enclosure/config.py        parametric dimensions (source of truth)
 enclosure/generate.py      CadQuery builder + checks + STEP/STL export
-enclosure/out/             focuspix_base/lid/assembly .step + .stl
+enclosure/out/             focuspix_base/lid/assembly .step + .stl + editable .f3d
 enclosure/fusion/          Fusion -> .f3d helper
-bom.csv, bom.md            BOM (UNO Q + power bank + ~40 g filament, ~US $55)
-APPLICATION.md             contest entry (items a–f)
+bom.csv, bom.md            BOM (Fusion, UNO Q, PCBWay, power bank + filament, ~US $55)
+APPLICATION.md             contest entry (hardware application questions 1-5)
 decisions.md               engineering log
 reference/                 official UNO Q STEP, PDFs, drill/CAD files
 ```
