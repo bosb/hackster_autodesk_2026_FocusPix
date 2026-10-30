@@ -26,7 +26,6 @@
  */
 
 #include <Arduino_LED_Matrix.h>
-#include <Arduino_Helpers.h>
 #include <Arduino_RouterBridge.h>
 
 ArduinoLEDMatrix matrix;
@@ -36,18 +35,18 @@ static constexpr uint8_t kRows = 8;
 static constexpr uint8_t kCols = 13;
 static constexpr uint16_t kFrameBits = kRows * kCols;
 
-// RGB LED 3 = PH10/PH11/PH12, RGB LED 4 = PH13/PH14/PH15 (MCU, 3.3 V).
+// RGB LED 3/4 via core variant macros (PH10-12 / PH13-15, MCU, 3.3 V).
 // These are common-anode LEDs: a LOW output turns a channel on.
-#define RGB3_R PIN_PH10
-#define RGB3_G PIN_PH11
-#define RGB3_B PIN_PH12
-#define RGB4_R PIN_PH13
-#define RGB4_G PIN_PH14
-#define RGB4_B PIN_PH15
+#define RGB3_R LED3_R
+#define RGB3_G LED3_G
+#define RGB3_B LED3_B
+#define RGB4_R LED4_R
+#define RGB4_G LED4_G
+#define RGB4_B LED4_B
 #define LED_ON LOW
 #define LED_OFF HIGH
 
-static const int8_t kRgbPins[3][3] = {
+static const int kRgbPins[2][3] = {
     {RGB3_R, RGB3_G, RGB3_B},
     {RGB4_R, RGB4_G, RGB4_B},
 };
@@ -76,18 +75,45 @@ static void self_test() {
   delay(500);
   matrix.clear();
 
-  // blink all four status LEDs
+  // blink all four status LEDs - cycle R, G, B individually
   for (int i = 0; i < 3; i++) {
+    // Red only
     for (int led = 0; led < 2; led++) {
-      for (int ch = 0; ch < 3; ch++) {
-        digitalWrite(kRgbPins[led][ch], LED_ON);
-      }
+      digitalWrite(kRgbPins[led][0], LED_ON);  // R channel
+      digitalWrite(kRgbPins[led][1], LED_OFF); // G channel
+      digitalWrite(kRgbPins[led][2], LED_OFF); // B channel
     }
     delay(200);
     for (int led = 0; led < 2; led++) {
-      for (int ch = 0; ch < 3; ch++) {
-        digitalWrite(kRgbPins[led][ch], LED_OFF);
-      }
+      digitalWrite(kRgbPins[led][0], LED_OFF);
+      digitalWrite(kRgbPins[led][1], LED_OFF);
+      digitalWrite(kRgbPins[led][2], LED_OFF);
+    }
+    delay(200);
+    // Green only
+    for (int led = 0; led < 2; led++) {
+      digitalWrite(kRgbPins[led][0], LED_OFF); // R channel
+      digitalWrite(kRgbPins[led][1], LED_ON);  // G channel
+      digitalWrite(kRgbPins[led][2], LED_OFF); // B channel
+    }
+    delay(200);
+    for (int led = 0; led < 2; led++) {
+      digitalWrite(kRgbPins[led][0], LED_OFF);
+      digitalWrite(kRgbPins[led][1], LED_OFF);
+      digitalWrite(kRgbPins[led][2], LED_OFF);
+    }
+    delay(200);
+    // Blue only
+    for (int led = 0; led < 2; led++) {
+      digitalWrite(kRgbPins[led][0], LED_OFF); // R channel
+      digitalWrite(kRgbPins[led][1], LED_OFF); // G channel
+      digitalWrite(kRgbPins[led][2], LED_ON);   // B channel
+    }
+    delay(200);
+    for (int led = 0; led < 2; led++) {
+      digitalWrite(kRgbPins[led][0], LED_OFF);
+      digitalWrite(kRgbPins[led][1], LED_OFF);
+      digitalWrite(kRgbPins[led][2], LED_OFF);
     }
     delay(200);
   }
